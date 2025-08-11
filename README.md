@@ -1,4 +1,4 @@
-# SupplyPoint
+# SecureSupply
 Platform for tokenizing supply chain assets and tracking their movement. Assets are stored as NFTs on `Diamante` blockchain.
 
 ## Features
