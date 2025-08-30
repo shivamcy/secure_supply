@@ -5,6 +5,8 @@ import { Order } from "../models/oder.model.js";
 import { User } from "../models/user.model.js";
 import { uploadOnCloudinary } from "../config/connectCloudinary.js";
 import QRCode from "qrcode";
+import { randomStr } from "../utils/helpers.js";
+
 
 export const addOrder = AsyncHandler(async (req, res) => {
   console.log("******* inside the addOrder function ********");
@@ -22,7 +24,7 @@ export const addOrder = AsyncHandler(async (req, res) => {
   //     "data": {
   //         "item": "sennheiser ie 200",
   //         "seller": "headphone zone",
-  //         "buyer": "devanshamity@gmail.com",
+  //         "buyer": "shivam@gmail.com",
   //         "source": "mumbai",
   //         "destination": "delhi"
   //     },
@@ -80,8 +82,9 @@ export const addOrder = AsyncHandler(async (req, res) => {
       current_owner: user._id,
       previous_owners: [],
       location: "warehouse",
-      timestamp: "2024-07-20T10:00:00Z",
+      timestamp: "2025-03-20T10:00:00Z",
     },
+
     data: {
       item: itemName,
       seller: user.name,
@@ -97,14 +100,6 @@ export const addOrder = AsyncHandler(async (req, res) => {
   };
 
   const url = process.env.GO_URL;
-
-  function randomStr(len, arr) {
-    let ans = "";
-    for (let i = len; i > 0; i--) {
-      ans += arr[Math.floor(Math.random() * arr.length)];
-    }
-    return ans;
-  }
 
   const generatedId = randomStr(10, "1234567890abcdef");
 
