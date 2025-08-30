@@ -1,5 +1,4 @@
 import mongoose, { Schema } from "mongoose";
-
 const senderSchema = new Schema({
     id: {
         type: String,
@@ -69,7 +68,5 @@ const orderSchema = new Schema(
     },
     { timestamps: true } // Automatically add createdAt and updatedAt fields
 );
-
-
 // Create and export the User model
 export const Order = mongoose.model("Order", orderSchema);

@@ -26,22 +26,13 @@ const userSchema = new Schema(
   { timestamps: true } // Automatically add createdAt and updatedAt fields
 );
 
-/**
- * @method matchPassword
- * @desc   Compare entered password with hashed password
- * @param  {String} enteredPassword - Password entered by the user
- * @return {Promise<Boolean>} - True if passwords match, false otherwise
- */
+
 userSchema.methods.matchPassword = async function (enteredPassword) {
   // Compare entered password with the stored hashed password
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-/**
- * @pre save
- * @desc   Hash the password before saving the user document
- * @param  {Function} next - Callback to proceed to the next middleware
- */
+
 userSchema.pre("save", async function (next) {
   // If the password is not modified or the document is new, proceed to the next middleware
   if (!this.isModified("password") || this.isNew) {
