@@ -125,7 +125,7 @@ export const confirmTransaction = AsyncHandler(async (req, res) => {
     await Order.updateOne(
       { _id: order["_id"] },
       {
-        status: "delivered",
+        status: "delivered", //for db
       }
     );
   }
@@ -135,7 +135,7 @@ export const confirmTransaction = AsyncHandler(async (req, res) => {
     headers: {
       "content-type": "application/json",
     },
-    body: JSON.stringify(orderDetails),
+    body: JSON.stringify(orderDetails), // for blockchain
   });
 
   const resp = await response.json();
@@ -149,14 +149,14 @@ export const confirmTransaction = AsyncHandler(async (req, res) => {
   await Order.updateOne(
     { _id: order["_id"] },
     {
-      txnHash: txnHash,
+      txnHash: txnHash, // for db
     }
   );
   response = await fetch(`${url}/get/${txnHash}`, {
     method: "GET",
   });
 
-  orderDetails = await response.json();
+  orderDetails = await response.json(); //updated order in blockchain
   console.log(orderDetails);
   res.status(200).json(new ApiResponse(200, {}, "Step confirmed successfuly"));
 });
