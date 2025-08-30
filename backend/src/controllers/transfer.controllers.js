@@ -115,7 +115,7 @@ export const confirmTransaction = AsyncHandler(async (req, res) => {
     latitude: "21.03",
     longitude: "24.56",
     handler: orderDetails.current_owner,
-    timestamp: "2024-07-20T21:00:00Z",
+    timestamp: "2025-03-09T21:00:00Z",
   });
   orderDetails.ownership.current_owner = user._id;
 
