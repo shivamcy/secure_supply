@@ -3,15 +3,12 @@ import { ApiError } from "../utils/ApiError.js";
 import { AsyncHandler } from "../utils/AsyncHandler.js";
 import jwt from "jsonwebtoken";
 
-/**
- * @middleware validateToken
- * @desc    Middleware to validate JWT token and attach user to the request
- * @access  Private (used for routes requiring authentication)
- */
+
 export const validateToken = AsyncHandler(async (req, res, next) => {
   try {
     // Retrieve token from cookies or authorization header
-    const token = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");
+    const token = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", ""); //replaces 
+                                                                                          //bearer with "" so it retrurns onlt token
 
     // Check if token is provided
     if (!token) {
