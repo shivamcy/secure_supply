@@ -37,9 +37,6 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 // Middleware to serve static files from the public folder
 app.use(express.static(path.join(__dirname, "public", "dist")));
 
-// To make use of this go to github.com/harshsharma20503/mern_docker_build
-// and copy the docker file and docker-compose file and paste it in the root of the project
-// and run the command docker-compose up --build
 
 // Middleware to enable CRUD operations on browser cookies
 app.use(cookieParser());
@@ -60,6 +57,7 @@ app.use("/api/order", orderRouter);
 import transferRouter from "./routes/transfer.routes.js";
 app.use("/api/transfer", transferRouter);
 
+//all unknown routes will lead to index.html
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "dist", "index.html"));
 });
