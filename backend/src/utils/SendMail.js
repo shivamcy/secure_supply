@@ -13,14 +13,6 @@ const transporter = nodemailer.createTransport({
     pass: process.env.APP_PASSWORD, // Sender's app password
   },
 });
-
-/**
- * sendConfirmationMail
- * @desc   Send a verification email with a confirmation link
- * @param  {string} to - Recipient's email address
- * @param  {string} id - Unique identifier for confirmation
- * @return {boolean} - Indicates if email sending was successful
- */
 export const sendConfirmationMail = async (to, id) => {
   // Define mail options
   const mailOptions = {

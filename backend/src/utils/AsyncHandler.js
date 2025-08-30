@@ -1,9 +1,4 @@
-/**
- * AsyncHandler
- * @desc   A higher-order function for handling asynchronous route handlers
- * @param  {Function} fn - The asynchronous function to be wrapped
- * @return {Function} - A new function that handles errors and passes them to the next middleware
- */
+//a wraper for try and catch in every async function to avoid writingh the same code everytime
 export const AsyncHandler = (fn) => async (req, res, next) => {
   try {
     // Execute the passed asynchronous function
