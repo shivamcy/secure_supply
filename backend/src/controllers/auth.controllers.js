@@ -6,11 +6,6 @@ import { UnverifiedUser } from "../models/unverifiedUser.model.js";
 import { generateJWTToken } from "../utils/GenerateJWT.js";
 import { sendConfirmationMail } from "../utils/SendMail.js";
 
-/**
- * @route   POST /api/auth/signUp
- * @desc    Register a new user
- * @access  Public
- */
 export const registerUser = AsyncHandler(async (req, res) => {
   console.log("******** registerUser Function ********");
   const { name, email, password, userType } = req.body;
@@ -61,11 +56,7 @@ export const registerUser = AsyncHandler(async (req, res) => {
   );
 });
 
-/**
- * @route   GET /api/auth/confirmEmail/:id
- * @desc    Confirm email address
- * @access  Public
- */
+
 export const confirmEmail = AsyncHandler(async (req, res) => {
   console.log("******** confirmEmail Function ********");
   const { id } = req.params;
@@ -100,11 +91,6 @@ export const confirmEmail = AsyncHandler(async (req, res) => {
   return res.status(200).send("Email confirmed. You can now login");
 });
 
-/**
- * @route   POST /api/auth/login
- * @desc    Log in a user
- * @access  Public
- */
 export const loginUser = AsyncHandler(async (req, res) => {
   console.log("******** loginUser Function ********");
   const { email, password } = req.body;
@@ -155,11 +141,7 @@ export const loginUser = AsyncHandler(async (req, res) => {
   throw new ApiError(401, "Invalid email or password");
 });
 
-/**
- * @route   POST /api/auth/logout
- * @desc    Log out a user
- * @access  Public
- */
+
 export const logoutUser = AsyncHandler(async (req, res) => {
   res.clearCookie("accessToken");
   return res.status(200).json(new ApiResponse(200, {}, "User logged out successfully"));
